@@ -171,6 +171,13 @@ function endSurvey(){
 	document.getElementById("endSurvey").hidden = false;
 }
 
+function addHiddenField(form, name, value) {
+    // form is a jQuery object, name and value are strings
+    var input = $("<input type='hidden' name='" + name + "' value=''>");
+    input.val(value);
+    form.append(input);
+}
+
 function loadRates(){
 	//document.getElementById("rates").textContent = sessionStorage.getItem("rates");
 	
