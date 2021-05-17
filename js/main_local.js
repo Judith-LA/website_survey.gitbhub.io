@@ -80,27 +80,32 @@ function displayInfo(){
 }
 
 function nextQuestion(){
-	answers.id.push(document.getElementById('postid').value);
-	answers.type.push(document.getElementById('type').value);
-	if (document.getElementById('dontUnderstand').checked){
-		answers.rate.push('NA');
+	if ((document.getElementById('dontUnderstand').checked) & (document.querySelector('input[name="Options"]:checked') != null)){
 		document.getElementById('dontUnderstand').checked = false;
-	} else {
-		answers.rate.push(document.querySelector('input[name="Options"]:checked').value);
 		document.querySelector('input[name="Options"]:checked').checked = false;
+	} else if ((document.getElementById('dontUnderstand').checked) | (document.querySelector('input[name="Options"]:checked') != null)) {
+		answers.id.push(document.getElementById('postid').value);
+		answers.type.push(document.getElementById('type').value);
+		if (document.getElementById('dontUnderstand').checked){
+			answers.rate.push('NA');
+			document.getElementById('dontUnderstand').checked = false;
+		} else if (document.querySelector('input[name="Options"]:checked') != null) {
+			answers.rate.push(document.querySelector('input[name="Options"]:checked').value);
+			document.querySelector('input[name="Options"]:checked').checked = false;
+		}
+		/* test: i_max=2; reality: i_max=28 */
+		if (i >= 28){
+			document.getElementById('next').classList.remove('button');
+			document.getElementById('next').hidden = true;
+			document.getElementById('finish').classList.add('button');
+			document.getElementById('finish').hidden = false;
+		}
+
+		i = i+1;
+		add_comment(i);
+		var bar = document.getElementById("progress-bar");
+		bar.style.width = (i+1)/31*100 +'%';
 	}
-	/* test: i_max=2; reality: i_max=28 */
-	if (i >= 28){
-		document.getElementById('next').classList.remove('button');
-		document.getElementById('next').hidden = true;
-		document.getElementById('finish').classList.add('button');
-		document.getElementById('finish').hidden = false;
-	}
-	
-	i = i+1;
-	add_comment(i);
-	var bar = document.getElementById("progress-bar");
-	bar.style.width = (i+1)/31*100 +'%';
 }
 
 function endSurvey(){
