@@ -180,8 +180,20 @@ function loadRates(){
 	var seconds = Math.floor((surveyTime)%60);
 
 	/*document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
-	
 	document.getElementById("score").textContent = sessionStorage.getItem("score");*/
+	
+	var form = document.getElementById("submit-form");
+	addHiddenField(form, 'assignmentId', answers.assignmentId);
+    	addHiddenField(form, 'workerId', answers.workerId);
+	var results = {
+		'id': answers.id,
+		'type': answers.type,
+		'rate': answers.rate
+   	};
+   	addHiddenField(form, 'results', JSON.stringify(results));
+	var time = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
+	addHiddenField(form, 'survey_time', time);
+	//addHiddenField(form, 'captchaScore', sessionStorage.getItem("score"));
 }
 
 
@@ -196,7 +208,11 @@ function sendResults(){
 	document.getElementById("age").textContent = document.getElementsByName('age')[0].value;
 	document.getElementById("politics").textContent = document.querySelector('input[name="politics"]:checked').value;*/
 	
-	//var form = document.getElementById("submit-form");
+	var form = document.getElementById("submit-form");
+	addHiddenField(form, 'gender', document.querySelector('input[name="gender"]:checked').value);
+	addHiddenField(form, 'age', document.getElementsByName('age')[0].value);
+	addHiddenField(form, 'politics', document.querySelector('input[name="politics"]:checked').value);
+	
 	$("#submit-form").attr("action", submitUrl); 
     	$("#submit-form").attr("method", "POST"); 
     	$("#submit-form").submit();
