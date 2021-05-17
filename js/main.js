@@ -198,7 +198,7 @@ function loadRates(){
 		'type': answers.type,
 		'rate': answers.rate
    	};
-   	addHiddenField(form, 'results', JSON.stringify(results));
+   	addHiddenField(form, 'rates', JSON.stringify(results));
 	var time = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
 	addHiddenField(form, 'survey_time', time);
 	//addHiddenField(form, 'captchaScore', sessionStorage.getItem("score"));
