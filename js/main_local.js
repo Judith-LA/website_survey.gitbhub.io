@@ -56,9 +56,6 @@ function add_comment(i){
 }
 
 function displayInfo(){
-	
-	document.getElementById("Instructions").hidden = true;
-	document.getElementById("survey").hidden = false;
 
 	/*var parameters = location.search.substring(1).split("&");
 	
