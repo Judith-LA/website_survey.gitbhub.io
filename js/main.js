@@ -172,28 +172,16 @@ function endSurvey(){
 }
 
 function loadRates(){
-	document.getElementById("rates").textContent = sessionStorage.getItem("rates");
+	//document.getElementById("rates").textContent = sessionStorage.getItem("rates");
 	
 	var surveyTime = sessionStorage.getItem("surveyTime");
 	var hours = Math.floor((surveyTime)/3600);
 	var minutes = Math.floor((surveyTime)%3600/60);
 	var seconds = Math.floor((surveyTime)%60);
 
-	document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
+	/*document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
 	
-	document.getElementById("score").textContent = sessionStorage.getItem("score");
-}
-
-
-function showResults(){
-	document.getElementById("lastQuestions").hidden = true;
-
-	document.getElementById("gender").textContent = document.querySelector('input[name="gender"]:checked').value;
-	document.getElementById("age").textContent = document.getElementsByName('age')[0].value;
-	document.getElementById("politics").textContent = document.querySelector('input[name="politics"]:checked').value;
-
-	document.getElementById("results").hidden = false;
-
+	document.getElementById("score").textContent = sessionStorage.getItem("score");*/
 }
 
 
@@ -202,11 +190,11 @@ function sendResults(){
 	
 	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
 	
-	document.getElementById("assignmentId").textContent = answers.assignmentId;
+	/*document.getElementById("assignmentId").textContent = answers.assignmentId;
 	document.getElementById("workerId").textContent = answers.workerId;
 	document.getElementById("gender").textContent = document.querySelector('input[name="gender"]:checked').value;
 	document.getElementById("age").textContent = document.getElementsByName('age')[0].value;
-	document.getElementById("politics").textContent = document.querySelector('input[name="politics"]:checked').value;
+	document.getElementById("politics").textContent = document.querySelector('input[name="politics"]:checked').value;*/
 	
 	//var form = document.getElementById("submit-form");
 	$("#submit-form").attr("action", submitUrl); 
