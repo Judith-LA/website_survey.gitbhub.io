@@ -172,10 +172,11 @@ function endSurvey(){
 }
 
 function addHiddenField(form, name, value) {
-    // form is a jQuery object, name and value are strings
-    var input = $("<input type='hidden' name='" + name + "' value=''>");
-    input.val(value);
-    form.append(input);
+	var newInput = document.createElement("input");
+	newInput.id = name;
+	newInput.value = value;
+	newInput.hidden = true;
+	form.append(newInput);
 }
 
 function loadRates(){
