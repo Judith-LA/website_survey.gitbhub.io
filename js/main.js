@@ -219,9 +219,17 @@ function sendResults(){
 	$("#submit-button").addClass("loading");
 	
 	var form = document.getElementById("submit-form");
-	addHiddenField(form, 'gender', document.querySelector('input[name="gender"]:checked').value);
+	if (document.querySelector('input[name="gender"]:checked') != null){
+		addHiddenField(form, 'gender', document.querySelector('input[name="gender"]:checked').value);
+	} else {
+		addHiddenField(form, 'gender', 'NA');
+	}
 	addHiddenField(form, 'age', document.getElementsByName('age')[0].value);
-	addHiddenField(form, 'politics', document.querySelector('input[name="politics"]:checked').value);
+	if (document.querySelector('input[name="politics"]:checked') != null){
+		addHiddenField(form, 'politics', document.querySelector('input[name="politics"]:checked').value);
+	} else {
+		addHiddenField(form, 'politics', 'NA');
+	}
 	
 	$("#submit-form").attr("action", submitUrl); 
     	$("#submit-form").attr("method", "POST"); 
