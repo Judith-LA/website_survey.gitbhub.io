@@ -209,7 +209,6 @@ function sendResults(){
 	document.getElementById("lastQuestions").hidden = true;
 	
 	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
-	//submitUrl = submitUrl + "?assignmentId=" + answers["assignmentId"];
 	
 	/*document.getElementById("assignmentId").textContent = answers.assignmentId;
 	document.getElementById("workerId").textContent = answers.workerId;
