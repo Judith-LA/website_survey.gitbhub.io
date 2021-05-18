@@ -216,6 +216,8 @@ function sendResults(){
 	document.getElementById("age").textContent = document.getElementsByName('age')[0].value;
 	document.getElementById("politics").textContent = document.querySelector('input[name="politics"]:checked').value;*/
 	
+	$("#submit-button").addClass("loading");
+	
 	var form = document.getElementById("submit-form");
 	addHiddenField(form, 'gender', document.querySelector('input[name="gender"]:checked').value);
 	addHiddenField(form, 'age', document.getElementsByName('age')[0].value);
