@@ -37,6 +37,13 @@ header {
 	background-color: #102645;
 }
 
+.instructions{
+	text-align: left;
+	background-color: white;
+	margin: 25px 100px 25px;
+	font-size: 20px;
+}
+
 .text{
 	height: 140px;
 }
