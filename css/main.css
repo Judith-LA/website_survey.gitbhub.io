@@ -1,7 +1,7 @@
 body {
 	background-color:white;
 	text-align: center;
-	font-size: 18px;
+	font-size: 20px;
 }
 
 form {
@@ -24,7 +24,7 @@ h1 {
 
 h2 {
 	margin: 0 0 10px;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 	color:#102645;
 }
