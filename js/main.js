@@ -84,16 +84,16 @@ function displayInfo(){
 	document.getElementById("Instructions").hidden = true;
 	document.getElementById("survey").hidden = false;
 
-	/*var parameters = location.search.substring(1).split("&");
+	var parameters = location.search.substring(1).split("&");
 	
 	if (parameters != ""){
 		var temp = parameters[0].split("=");
 		var data_file = "survey_" + unescape(temp[1]) + ".json";
 	} else {
 		var data_file = "survey_test.json";
-	}*/
+	}
 	
-	var data_file = "survey_test.json";
+	//var data_file = "survey_test.json";
 
 	$.getJSON(data_file).done(function(data) { 
 	    comments = data;
@@ -101,7 +101,7 @@ function displayInfo(){
 	});
 	
 	var bar = document.getElementById("progress-bar");
-	bar.style.width = (i+1)/31*100 +'%';
+	bar.style.width = (i+1)/34*100 +'%';
 	
 	startDate = new Date();
 }
