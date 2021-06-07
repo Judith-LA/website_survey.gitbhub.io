@@ -42,7 +42,7 @@ function add_controlQuestion(){
 	var comment_title = document.getElementById("title");
 	var comment_text = document.getElementById("text");
 
-	comment_id.value = comments.control_question.id;
+	comment_id.value = controlQuest.id;
 	comment_type.value = controlQuest.type;
 
 	var title = controlQuest.title;
@@ -52,7 +52,7 @@ function add_controlQuestion(){
 		comment_title.textContent = title;
 	}
 
-	comment_text.textContent = comments.text;
+	comment_text.textContent = controlQuest.text;
 }
 
 function displayControlQuestion(){
