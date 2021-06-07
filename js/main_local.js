@@ -79,7 +79,7 @@ function checkControlQuestion(){
 		} else if ((correctAnswer == 2) & (document.querySelector('input[name="Options"]:checked').value > 0)) {
 			goodAnswer = true;
 		} else if (correctAnswer == 0){
-			var acceptableAnswers = [-1,0,1];
+			var acceptableAnswers = ["-1","0","1"];
 			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
 			    goodAnswer = true;
 			}
