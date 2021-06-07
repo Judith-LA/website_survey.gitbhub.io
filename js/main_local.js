@@ -43,17 +43,17 @@ function add_controlQuestion(){
 	var comment_title = document.getElementById("title");
 	var comment_text = document.getElementById("text");
 
-	comment_id.value = controlQuest.id;
-	comment_type.value = controlQuest.type;
+	comment_id.value = controlQuest.id[0];
+	comment_type.value = controlQuest.type[0];
 
-	var title = controlQuest.title;
+	var title = controlQuest.title[0];
 	if (title==null){
 		comment_title.textContent = '';
 	} else {
 		comment_title.textContent = title;
 	}
 
-	comment_text.textContent = controlQuest.text;
+	comment_text.textContent = controlQuest.text[0];
 }
 
 function displayControlQuestion(){
@@ -120,17 +120,17 @@ function add_comment(i){
 	var comment_title = document.getElementById("title");
 	var comment_text = document.getElementById("text");
 
-	comment_id.value = comments.postid[index[i]];
-	comment_type.value = comments["type"][index[i]];
+	comment_id.value = comments[index[i]].postid;
+	comment_type.value = comments[index[i]].type;
 
-	var title = comments["title"][index[i]];
+	var title = comments[index[i]].title;
 	if (title==null){
 		comment_title.textContent = '';
 	} else {
 		comment_title.textContent = title;
 	}
 
-	comment_text.textContent = comments["text"][index[i]];
+	comment_text.textContent = comments[index[i]].text;
 }
 
 function displayInfo(){
