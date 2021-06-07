@@ -73,7 +73,8 @@
 	<label for="left">Ich verstehe das nicht</label></br>
 	
 	<div class="down">
-		<button class="button" id="next" onclick="nextQuestion()"> Nächster </button>
+		<button class="button" id="control" onclick="checkControlQuestion()"> Nächster </button>
+		<button id="next" onclick="nextQuestion()" hidden="True"> Nächster </button>
 		<button id="finish" onclick="endSurvey()" hidden="True"> Ende </button>
 		<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 	</div>
