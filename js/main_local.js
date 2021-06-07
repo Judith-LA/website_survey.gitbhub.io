@@ -66,19 +66,39 @@ function displayControlQuestion(){
 }
 
 function checkControlQuestion(){
+	var goodAnswer = false;
+	
 	if ((document.getElementById('dontUnderstand').checked) & (document.querySelector('input[name="Options"]:checked') != null)){
 		document.getElementById('dontUnderstand').checked = false;
 		document.querySelector('input[name="Options"]:checked').checked = false;
-	} else if ((document.getElementById('dontUnderstand').checked) | (document.querySelector('input[name="Options"]:checked') != null)) {
-		if ((document.getElementById('dontUnderstand').checked) | (controlQuest.answer != document.querySelector('input[name="Options"]:checked').value)){
-			location.href = "fail_survey.html";
-		} else {
-			document.getElementById('control').classList.remove('button');
-			document.getElementById('control').hidden = true;
-			document.getElementById('next').classList.add('button');
-			document.getElementById('next').hidden = false;
-			displayInfo();
+	} else if (document.querySelector('input[name="Options"]:checked') != null) {
+		var correctAnswer = controlQuest.answer;
+		
+		if ((correctAnswer == -2) & (document.querySelector('input[name="Options"]:checked').value < 0)) {
+			goodAnswer = true;
+		} else if ((correctAnswer == 2) & (document.querySelector('input[name="Options"]:checked').value > 0)) {
+			goodAnswer = true;
+		} else if (correctAnswer == 0){
+			var acceptableAnswers = [-1,0,1];
+			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
+			    goodAnswer = true;
+			}
 		}
+	}
+	
+	if (goodAnswer){
+		answers.id.push(document.getElementById('postid').value);
+		answers.type.push(document.getElementById('type').value);
+		answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
+		
+		document.getElementById('control').classList.remove('button');
+		document.getElementById('control').hidden = true;
+		document.getElementById('next').classList.add('button');
+		document.getElementById('next').hidden = false;
+		
+		displayInfo();
+	} else {
+		location.href = "fail_survey.html";
 	}
 }
 
