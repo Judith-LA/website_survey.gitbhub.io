@@ -3,6 +3,7 @@ var rangeslider;
 var output;
 var comments;
 var index;
+var controlQuest;
 var i=0;
 var answers = {id: [],
 	       type: [], 
@@ -32,6 +33,52 @@ function loadIndex(){
 	config = data;
     });
 
+}
+
+
+function add_controlQuestion(){
+	var comment_id = document.getElementById("postid");
+	var comment_type = document.getElementById("type");
+	var comment_title = document.getElementById("title");
+	var comment_text = document.getElementById("text");
+
+	comment_id.value = controlQuest.id;
+	comment_type.value = controlQuest.type;
+
+	var title = controlQuest.title;
+	if (title==null){
+		comment_title.textContent = '';
+	} else {
+		comment_title.textContent = title;
+	}
+
+	comment_text.textContent = comments.text;
+}
+
+function displayControlQuestion(){
+	var data_file = "survey_test_control_question.json";
+	$.getJSON(data_file).done(function(data) { 
+	    comments = data;
+	    controlQuest = comments.control_question;
+	});
+	add_controlQuestion();
+}
+
+function checkControlQuestion(){
+	if ((document.getElementById('dontUnderstand').checked) & (document.querySelector('input[name="Options"]:checked') != null)){
+		document.getElementById('dontUnderstand').checked = false;
+		document.querySelector('input[name="Options"]:checked').checked = false;
+	} else if ((document.getElementById('dontUnderstand').checked) | (document.querySelector('input[name="Options"]:checked') != null)) {
+		if ((document.getElementById('dontUnderstand').checked) | (controlQuest.answer != document.querySelector('input[name="Options"]:checked').value)){
+			location.href = "survey_end.html";
+		} else {
+			document.getElementById('control').classList.remove('button');
+			document.getElementById('control').hidden = true;
+			document.getElementById('next').classList.add('button');
+			document.getElementById('next').hidden = false;
+			displayInfo();
+		}
+	}
 }
 
 function add_comment(i){
@@ -66,12 +113,14 @@ function displayInfo(){
 		var data_file = "survey_test.json";
 	}*/
 	
-	var data_file = "survey_test.json";
+	//var data_file = "survey_test.json";
 
-	$.getJSON(data_file).done(function(data) { 
+	/*$.getJSON(data_file).done(function(data) { 
 	    comments = data;
 	    add_comment(i);
-	});
+	});*/
+	
+	add_comment(i);
 	
 	var bar = document.getElementById("progress-bar");
 	bar.style.width = (i+1)/31*100 +'%';
