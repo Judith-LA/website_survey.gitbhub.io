@@ -84,22 +84,23 @@ function checkControlQuestion(){
 			    goodAnswer = true;
 			}
 		}
+		if (goodAnswer){
+			answers.id.push(document.getElementById('postid').value);
+			answers.type.push(document.getElementById('type').value);
+			answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
+
+			document.getElementById('control').classList.remove('button');
+			document.getElementById('control').hidden = true;
+			document.getElementById('next').classList.add('button');
+			document.getElementById('next').hidden = false;
+
+			displayInfo();
+		} else {
+			location.href = "fail_survey.html";
+		}
 	}
 	
-	if (goodAnswer){
-		answers.id.push(document.getElementById('postid').value);
-		answers.type.push(document.getElementById('type').value);
-		answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
-		
-		document.getElementById('control').classList.remove('button');
-		document.getElementById('control').hidden = true;
-		document.getElementById('next').classList.add('button');
-		document.getElementById('next').hidden = false;
-		
-		displayInfo();
-	} else {
-		location.href = "fail_survey.html";
-	}
+	
 }
 
 function add_comment(i){
