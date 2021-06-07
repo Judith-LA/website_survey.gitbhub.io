@@ -90,6 +90,8 @@ function checkControlQuestion(){
 			}
 		}
 		if (goodAnswer){
+			document.querySelector('input[name="Options"]:checked').checked = false;
+			
 			answers.id.push(document.getElementById('postid').value);
 			answers.type.push(document.getElementById('type').value);
 			answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
