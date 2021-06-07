@@ -1,6 +1,7 @@
 var config = {}
 var rangeslider;
 var output;
+var file;
 var comments;
 var index;
 var controlQuest;
@@ -58,8 +59,9 @@ function add_controlQuestion(){
 function displayControlQuestion(){
 	var data_file = "survey_test_control_question.json";
 	$.getJSON(data_file).done(function(data) { 
-	    	comments = data;
-	    	controlQuest = comments.control_question;
+		file = data;
+	    	comments = file.survey;
+	    	controlQuest = file.control_question;
 		add_controlQuestion();
 	});
 	
