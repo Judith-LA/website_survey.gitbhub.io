@@ -5,6 +5,7 @@ var config = {}
 var rangeslider;
 var output;
 var comments;
+var controlQuest;
 var index;
 var i=0;
 var answers = {id: [],
@@ -38,24 +39,100 @@ function loadIndex(){
 
 }
 
-function set_tick_labels() {
 
-  var range = document.getElementById("slider");
-  
-  var ticks = document.getElementById("ticks");
-  
-  var array = ["Negativ", "Eher negativ", "Neutral", "Eher positiv", "Positiv"]
+function add_controlQuestion(){
+	var comment_id = document.getElementById("postid");
+	var comment_type = document.getElementById("type");
+	var comment_title = document.getElementById("title");
+	var comment_text = document.getElementById("text");
 
-  array.forEach(function (item, index) {
-  		var span = document.createElement("SPAN");
-  
-  		span.textContent = item;
-  		span.setAttribute('class', 'tick');
-  		span.style.left = (index/14*100-12)+'%';
-  		ticks.append(span);
-        
-	});
+	comment_id.value = controlQuest.id;
+	comment_type.value = controlQuest.type;
+
+	var title = controlQuest.title;
+	if (title==null){
+		comment_title.textContent = '';
+	} else {
+		comment_title.textContent = title;
+	}
+
+	comment_text.textContent = controlQuest.text;
 }
+
+function displayControlQuestion(){
+	document.getElementById("Instructions").hidden = true;
+	document.getElementById("survey").hidden = false;
+
+	var parameters = location.search.substring(1).split("&");
+	
+	if (parameters != ""){
+		var temp = parameters[0].split("=");
+		var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
+	} else {
+		var data_file = "survey_test.json";
+	}
+	
+	//var data_file = "survey_test.json";
+
+	$.getJSON(data_file).done(function(data) { 
+	    	comments = data;
+	    	controlQuest = comments.control_question;
+		add_controlQuestion();
+	});
+	
+	var bar = document.getElementById("progress-bar");
+	bar.style.width = (i+1)/34*100 +'%';
+	
+	startDate = new Date();
+}
+
+function checkControlQuestion(){
+	var goodAnswer = false;
+	
+	if ((document.getElementById('dontUnderstand').checked) & (document.querySelector('input[name="Options"]:checked') != null)){
+		document.getElementById('dontUnderstand').checked = false;
+		document.querySelector('input[name="Options"]:checked').checked = false;
+	} else if (document.getElementById('dontUnderstand').checked) {
+		location.href = "fail_survey.html";
+	} else if (document.querySelector('input[name="Options"]:checked') != null) {
+		var correctAnswer = controlQuest.answer;
+		
+		if ((correctAnswer == -2) & (document.querySelector('input[name="Options"]:checked').value < 0)) {
+			goodAnswer = true;
+		} else if ((correctAnswer == 2) & (document.querySelector('input[name="Options"]:checked').value > 0)) {
+			goodAnswer = true;
+		} else if (correctAnswer == 0){
+			var acceptableAnswers = ["-1","0","1"];
+			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
+			    goodAnswer = true;
+			}
+		}
+		if (goodAnswer){
+			document.querySelector('input[name="Options"]:checked').checked = false;
+			
+			answers.id.push(document.getElementById('postid').value);
+			answers.type.push(document.getElementById('type').value);
+			answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
+
+			document.getElementById('control').classList.remove('button');
+			document.getElementById('control').hidden = true;
+			document.getElementById('next').classList.add('button');
+			document.getElementById('next').hidden = false;
+
+			displayInfo();
+		} else {
+			document.getElementById("survey").hidden = true;
+			
+			var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
+			$("#submit-form").attr("action", submitUrl); 
+    			$("#submit-form").attr("method", "POST"); 
+    			$("#submit-form").submit();
+			
+			document.getElementById("fail").hidden = false;
+		}
+	}	
+}
+
 
 function add_comment(i){
 	index = Object.keys(comments.postid);
@@ -79,9 +156,8 @@ function add_comment(i){
 }
 
 function displayInfo(){
-	//set_tick_labels();
 	
-	document.getElementById("Instructions").hidden = true;
+	/*document.getElementById("Instructions").hidden = true;
 	document.getElementById("survey").hidden = false;
 
 	var parameters = location.search.substring(1).split("&");
@@ -91,7 +167,7 @@ function displayInfo(){
 		var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
 	} else {
 		var data_file = "survey_test.json";
-	}
+	}*/
 	
 	//var data_file = "survey_test.json";
 
@@ -101,9 +177,10 @@ function displayInfo(){
 	});
 	
 	var bar = document.getElementById("progress-bar");
-	bar.style.width = (i+1)/34*100 +'%';
+	//bar.style.width = (i+1)/34*100 +'%';
+	bar.style.width = (i+2)/34*100 +'%';
 	
-	startDate = new Date();
+	//startDate = new Date();
 }
 
 function nextQuestion(){
@@ -131,7 +208,7 @@ function nextQuestion(){
 		i = i+1;
 		add_comment(i);
 		var bar = document.getElementById("progress-bar");
-		bar.style.width = (i+1)/34*100 +'%';
+		bar.style.width = (i+2)/34*100 +'%';
 	}
 }
 
