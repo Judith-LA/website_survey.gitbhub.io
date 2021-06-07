@@ -71,7 +71,7 @@ function checkControlQuestion(){
 		document.querySelector('input[name="Options"]:checked').checked = false;
 	} else if ((document.getElementById('dontUnderstand').checked) | (document.querySelector('input[name="Options"]:checked') != null)) {
 		if ((document.getElementById('dontUnderstand').checked) | (controlQuest.answer != document.querySelector('input[name="Options"]:checked').value)){
-			location.href = "survey_end.html";
+			location.href = "fail_survey.html";
 		} else {
 			document.getElementById('control').classList.remove('button');
 			document.getElementById('control').hidden = true;
