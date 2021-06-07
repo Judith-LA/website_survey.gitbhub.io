@@ -95,7 +95,8 @@
 			<label for="left">Ich verstehe nicht</label></br>
 			
 			<div class="down">
-				<button class="button" id="next" onclick="nextQuestion()"> Nächster </button>
+				<button class="button" id="control" onclick="checkControlQuestion()"> Nächster </button>
+				<button id="next" onclick="nextQuestion()"> Nächster </button>
 				<button id="finish" onclick="endSurvey()" hidden="True"> Ende </button>
 				<input type="hidden" name="recaptcha_response" id="recaptchaResponse">
 			</div>
@@ -151,6 +152,20 @@
 		<div class="body" id="Thanks" hidden="True">
 			<p>Vielen Dank für Ihre Teilnahme an der Umfrage </p>
 		</div>
+	</div>
+
+	<div id="fail" hidden="True">
+		<header>
+			<h1> Ende der Umfrage </h1>
+		</header>
+
+	  <div class="instructions">
+	      <p>Liebe:r Teilnehmer:innen,
+	      <br></br>
+	      <br> Zur Sicherung der Datenqualität beinhaltet die Erhebung einige Kontrollfragen. 
+	      <br> Leider weicht Ihre Antwort zu stark von den plausiblen Lösungen ab, weshalb wir Sie nicht für die Aufgabe zulassen können. </p>
+	  </div>
+		
 	</div>
 
 </body>
