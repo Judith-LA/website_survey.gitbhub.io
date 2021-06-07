@@ -79,12 +79,18 @@ function checkControlQuestion(){
 	} else if (document.getElementById('dontUnderstand').checked) {
 		location.href = "fail_survey.html";
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
-		var correctAnswer = controlQuest.answer;
+		var correctAnswer = controlQuest.answer[0];
 		
-		if ((correctAnswer == -2) & (document.querySelector('input[name="Options"]:checked').value < 0)) {
-			goodAnswer = true;
+		if (correctAnswer == -2) {
+			var acceptableAnswers = ["-2","-1"];
+			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
+			    goodAnswer = true;
+			}
 		} else if ((correctAnswer == 2) & (document.querySelector('input[name="Options"]:checked').value > 0)) {
-			goodAnswer = true;
+			var acceptableAnswers = ["1","2"];
+			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
+			    goodAnswer = true;
+			}
 		} else if (correctAnswer == 0){
 			var acceptableAnswers = ["-1","0","1"];
 			if (acceptableAnswers.includes(document.querySelector('input[name="Options"]:checked').value)) {
