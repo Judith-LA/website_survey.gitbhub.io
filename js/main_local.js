@@ -119,7 +119,7 @@ function checkControlQuestion(){
 }
 
 function add_comment(i){
-	index = Object.keys(comments.postid);
+	index = Object.keys(comments);
 	
 	var comment_id = document.getElementById("postid");
 	var comment_type = document.getElementById("type");
