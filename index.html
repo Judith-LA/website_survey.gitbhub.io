@@ -138,7 +138,7 @@
 					<input type="text" name="age">
 				</p>
 			</p>
-			<button id="submit-button" class="button" onclick="sendResults()">Einreichen</button>
+			<button id="end-button" class="button" onclick="endSurvey()">Enden</button>
 		</div>
 		
 		<div id="results" hidden="True">
@@ -151,6 +151,7 @@
 
 		<div class="body" id="Thanks" hidden="True">
 			<p>Vielen Dank für Ihre Teilnahme an der Umfrage </p>
+			<button id="submit-button" class="button" onclick="sendResults()">Einreichen</button>
 		</div>
 	</div>
 
@@ -160,10 +161,12 @@
 		</header>
 
 	  <div class="instructions">
-	      <p>Liebe:r Teilnehmer:innen,
-	      <br></br>
-	      <br> Zur Sicherung der Datenqualität beinhaltet die Erhebung einige Kontrollfragen. 
-	      <br> Leider weicht Ihre Antwort zu stark von den plausiblen Lösungen ab, weshalb wir Sie nicht für die Aufgabe zulassen können. </p>
+	      	<p>Liebe:r Teilnehmer:innen,
+	        <br></br>
+	        <br> Zur Sicherung der Datenqualität beinhaltet die Erhebung einige Kontrollfragen. 
+	        <br> Leider weicht Ihre Antwort zu stark von den plausiblen Lösungen ab, weshalb wir Sie nicht für die Aufgabe zulassen können. </p>
+
+		<button id="submit-fail-button" class="button" onclick="submitFailSurvey()">Einreichen</button>
 	  </div>
 		
 	</div>
