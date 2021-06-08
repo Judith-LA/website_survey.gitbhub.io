@@ -70,7 +70,7 @@ function displayControlQuestion(){
 		var temp = parameters[0].split("=");
 		var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
 	} else {
-		var data_file = "survey_test.json";
+		var data_file = "survey_test_control_question.json";
 	}
 	
 	//var data_file = "survey_test.json";
