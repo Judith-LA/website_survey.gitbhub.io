@@ -130,9 +130,17 @@ function checkControlQuestion(){
 		document.getElementById('dontUnderstand').checked = false;
 		document.querySelector('input[name="Options"]:checked').checked = false;
 	} else if (document.getElementById('dontUnderstand').checked) {
+		answers.id.push(document.getElementById('postid').value);
+		answers.type.push(document.getElementById('type').value);
+		answers.rate.push('NA');
+		
 		submitFailSurvey();
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
 		var correctAnswer = controlQuest.answer[0];
+		
+		answers.id.push(document.getElementById('postid').value);
+		answers.type.push(document.getElementById('type').value);
+		answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
 		
 		if (correctAnswer == -2) {
 			var acceptableAnswers = ["-2","-1"];
@@ -147,10 +155,6 @@ function checkControlQuestion(){
 		}
 		
 		if (goodAnswer){
-			answers.id.push(document.getElementById('postid').value);
-			answers.type.push(document.getElementById('type').value);
-			answers.rate.push(document.querySelector('input[name="Options"]:checked').value)
-			
 			document.querySelector('input[name="Options"]:checked').checked = false;
 			
 			document.getElementById('control').classList.remove('button');
