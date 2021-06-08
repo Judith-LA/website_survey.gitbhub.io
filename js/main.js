@@ -92,6 +92,7 @@ function submitFailSurvey(){
 	endDate = new Date();
 	
 	document.getElementById("survey").hidden = true;
+	document.getElementById("fail").hidden = false;
 		
 	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
 
@@ -119,8 +120,6 @@ function submitFailSurvey(){
 	$("#submit-form").attr("action", submitUrl); 
 	$("#submit-form").attr("method", "POST"); 
 	$("#submit-form").submit();
-
-	document.getElementById("fail").hidden = false;
 }
 
 function checkControlQuestion(){
@@ -321,6 +320,7 @@ function loadRates(){
 
 function sendResults(){
 	document.getElementById("lastQuestions").hidden = true;
+	document.getElementById("Thanks").hidden = false;
 	
 	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
 	
@@ -348,8 +348,6 @@ function sendResults(){
 	$("#submit-form").attr("action", submitUrl); 
     	$("#submit-form").attr("method", "POST"); 
     	$("#submit-form").submit();
-
-	document.getElementById("Thanks").hidden = false;
 }
 
 function gup(name) {
