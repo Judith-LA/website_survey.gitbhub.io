@@ -317,7 +317,7 @@ function loadRates(){
 	//addHiddenField(form, 'captchaScore', sessionStorage.getItem("score"));
 }
 
-function endSurvey(){
+function end(){
 	document.getElementById("lastQuestions").hidden = true;
 	document.getElementById("Thanks").hidden = false;
 }
