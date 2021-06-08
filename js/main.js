@@ -88,6 +88,41 @@ function displayControlQuestion(){
 	startDate = new Date();
 }
 
+function submitFailSurvey(){
+	endDate = new Date();
+	
+	document.getElementById("survey").hidden = true;
+		
+	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
+
+	var form = document.getElementById("submit-form");
+	addHiddenField(form, 'assignmentId', answers.assignmentId);
+	addHiddenField(form, 'workerId', answers.workerId);
+	var results = {
+		'id': answers.id,
+		'type': answers.type,
+		'rate': answers.rate
+	};
+	addHiddenField(form, 'rates', JSON.stringify(results));
+	
+	var surveyTime = (endDate - startDate)/1e3;
+	var hours = Math.floor((surveyTime)/3600);
+	var minutes = Math.floor((surveyTime)%3600/60);
+	var seconds = Math.floor((surveyTime)%60);
+	var time = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
+	addHiddenField(form, 'survey_time', time);
+	
+	addHiddenField(form, 'gender', 'NA');
+	addHiddenField(form, 'age', document.getElementsByName('age')[0].value);
+	addHiddenField(form, 'politics', 'NA');
+
+	$("#submit-form").attr("action", submitUrl); 
+	$("#submit-form").attr("method", "POST"); 
+	$("#submit-form").submit();
+
+	document.getElementById("fail").hidden = false;
+}
+
 function checkControlQuestion(){
 	var goodAnswer = false;
 	
@@ -95,14 +130,7 @@ function checkControlQuestion(){
 		document.getElementById('dontUnderstand').checked = false;
 		document.querySelector('input[name="Options"]:checked').checked = false;
 	} else if (document.getElementById('dontUnderstand').checked) {
-		document.getElementById("survey").hidden = true;
-
-		var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
-		$("#submit-form").attr("action", submitUrl); 
-		$("#submit-form").attr("method", "POST"); 
-		$("#submit-form").submit();
-
-		document.getElementById("fail").hidden = false;
+		submitFailSurvey();
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
 		var correctAnswer = controlQuest.answer[0];
 		
@@ -132,14 +160,7 @@ function checkControlQuestion(){
 
 			displayInfo();
 		} else {
-			document.getElementById("survey").hidden = true;
-			
-			var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
-			$("#submit-form").attr("action", submitUrl); 
-    			$("#submit-form").attr("method", "POST"); 
-    			$("#submit-form").submit();
-			
-			document.getElementById("fail").hidden = false;
+			submitFailSurvey();
 		}
 	}	
 }
