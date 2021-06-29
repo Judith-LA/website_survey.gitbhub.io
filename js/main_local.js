@@ -1,4 +1,7 @@
-var config = {}
+const MTURK_SUBMIT = "https://www.mturk.com/mturk/externalSubmit";
+const SANDBOX_SUBMIT = "https://workersandbox.mturk.com/mturk/externalSubmit";
+
+//var config = {}
 var rangeslider;
 var output;
 var file;
@@ -11,7 +14,7 @@ var answers = {id: [],
 	       rate: []};
 var startDate;
 var endDate;
-
+var prod;
 
 function toSurvey() {
  	location.replace("survey.html");
@@ -30,9 +33,9 @@ function loadIndex(){
 	document.getElementById("info").value = unescape(temp[1]);
     }*/
 	
-    $.getJSON("config.json").done(function(data) {
+    /*$.getJSON("config.json").done(function(data) {
 	config = data;
-    });
+    });*/
 
 }
 
@@ -57,17 +60,45 @@ function add_controlQuestion(){
 }
 
 function displayControlQuestion(){
-	var data_file = "survey_test_control_question.json";
-	$.getJSON(data_file).done(function(data) { 
+	var parameters = location.search.substring(1).split("&");
+	
+	if (parameters != ""){
+		var prod_def = parameters[0].split("=");
+		prod = unescape(temp[1]);
+		if (parameters.length == 1){
+			var data_file = "survey_test_control_question.json";
+		} else {
+			var temp = parameters[1].split("=");
+			var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
+		}
+	} else {
+		var data_file = "survey_test_control_question.json";
+	}
+
+	$.getJSON(data_file).done(function(data) {  
 		file = data;
 	    	comments = file.survey;
 	    	controlQuest = file.control_question;
 		add_controlQuestion();
 	});
 	
+	/*var data_file = "survey_test_control_question.json";
+	$.getJSON(data_file).done(function(data) { 
+		file = data;
+	    	comments = file.survey;
+	    	controlQuest = file.control_question;
+		add_controlQuestion();
+	});*/
+	
 	var bar = document.getElementById("progress-bar");
 	bar.style.width = (i+1)/31*100 +'%';
 	
+	if (prod == "true"){
+		var submitUrl =  MTURK_SUBMIT;
+	} else if (prod == "false"){
+		var submitUrl = SANDBOX_SUBMIT;
+	}
+	console.log(submitUrl);
 }
 
 function checkControlQuestion(){
