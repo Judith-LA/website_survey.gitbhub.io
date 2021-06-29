@@ -64,7 +64,7 @@ function displayControlQuestion(){
 	
 	if (parameters != ""){
 		var prod_def = parameters[0].split("=");
-		prod = unescape(temp[1]);
+		prod = unescape(prod_def[1]);
 		if (parameters.length == 1){
 			var data_file = "survey_test_control_question.json";
 		} else {
