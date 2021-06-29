@@ -16,6 +16,7 @@ var answers = {id: [],
 	       workerId: gup("workerId")};
 var startDate;
 var endDate;
+var prod;
 
 function toSurvey() {
  	location.replace("survey.html");
@@ -27,17 +28,9 @@ function toInstructions() {
 
 
 function loadIndex(){
-    /*var parameters = location.search.substring(1).split("&");
-    if (parameters != ""){
-	var temp = parameters[0].split("=");
-	document.getElementById("info").name = unescape(temp[0]);
-	document.getElementById("info").value = unescape(temp[1]);
-    }*/
-	
     $.getJSON("config.json").done(function(data) {
 	config = data;
     });
-
 }
 
 
@@ -72,8 +65,6 @@ function displayControlQuestion(){
 	} else {
 		var data_file = "survey_test_control_question.json";
 	}
-	
-	//var data_file = "survey_test.json";
 
 	$.getJSON(data_file).done(function(data) {  
 		file = data;
