@@ -1,7 +1,7 @@
 const MTURK_SUBMIT = "https://www.mturk.com/mturk/externalSubmit";
 const SANDBOX_SUBMIT = "https://workersandbox.mturk.com/mturk/externalSubmit";
 
-var config = {}
+//var config = {}
 var rangeslider;
 var output;
 var file;
@@ -17,6 +17,7 @@ var answers = {id: [],
 var startDate;
 var endDate;
 var prod;
+var submitUrl;
 
 function toSurvey() {
  	location.replace("survey.html");
@@ -28,9 +29,9 @@ function toInstructions() {
 
 
 function loadIndex(){
-    $.getJSON("config.json").done(function(data) {
+    /*$.getJSON("config.json").done(function(data) {
 	config = data;
-    });
+    });*/
 }
 
 
@@ -60,8 +61,14 @@ function displayControlQuestion(){
 	var parameters = location.search.substring(1).split("&");
 	
 	if (parameters != ""){
-		var temp = parameters[0].split("=");
-		var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
+		var prod_def = parameters[0].split("=");
+		prod = unescape(prod_def[1]);
+		if (parameters.length == 1){
+			var data_file = "survey_test_control_question.json";
+		} else {
+			var temp = parameters[1].split("=");
+			var data_file = "surveys/survey_" + unescape(temp[1]) + ".json";
+		}
 	} else {
 		var data_file = "survey_test_control_question.json";
 	}
@@ -131,7 +138,12 @@ function checkControlQuestion(){
 
 function submitFailSurvey(){
 		
-	var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
+	//var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
+	if (prod == "true"){
+		submitUrl =  MTURK_SUBMIT;
+	} else if (prod == "false"){
+		submitUrl = SANDBOX_SUBMIT;
+	}
 
 	var form = document.getElementById("submit-form");
 	addHiddenField(form, 'assignmentId', answers.assignmentId);
