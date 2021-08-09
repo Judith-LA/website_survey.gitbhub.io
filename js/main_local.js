@@ -109,8 +109,10 @@ function checkControlQuestion(){
 		document.getElementById('dontUnderstand').checked = false;
 		document.querySelector('input[name="Options"]:checked').checked = false;
 	} else if (document.getElementById('dontUnderstand').checked) {
+		var uid = Date.now() + Math.random();
 		location.href = "fail_survey.html";
-		document.getElementById('uuidv4').textContent = Date.now() + Math.random();
+		var uuidv4 = document.getElementById('uuidv4');
+		uuidv4.textContent = uid;
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
 		var correctAnswer = controlQuest.answer[0];
 		
