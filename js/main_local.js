@@ -15,6 +15,7 @@ var answers = {id: [],
 var startDate;
 var endDate;
 var prod;
+const uuidv4 = require("uuid/v4");
 
 function toSurvey() {
  	location.replace("survey.html");
@@ -143,6 +144,7 @@ function checkControlQuestion(){
 			displayInfo();
 		} else {
 			location.href = "fail_survey.html";
+			document.getElementById('uuidv4').textContent = uuidv4();
 		}
 	}
 	
