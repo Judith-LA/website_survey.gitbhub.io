@@ -110,6 +110,7 @@ function checkControlQuestion(){
 		document.querySelector('input[name="Options"]:checked').checked = false;
 	} else if (document.getElementById('dontUnderstand').checked) {
 		location.href = "fail_survey.html";
+		document.getElementById('uuidv4').textContent = Date.now() + Math.random();
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
 		var correctAnswer = controlQuest.answer[0];
 		
