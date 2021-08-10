@@ -151,7 +151,7 @@ function checkControlQuestion(){
 }
 
 function generateUid(){
-	document.getElementById('uuidv4').textContent = Date.now() + Math.random();
+	document.getElementById('uuidv4').textContent = Date.now() + '-' + Math.random();
 }
 
 function add_comment(i){
