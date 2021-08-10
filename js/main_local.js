@@ -15,7 +15,6 @@ var answers = {id: [],
 var startDate;
 var endDate;
 var prod;
-//const uuidv4 = require("uuid/v4");
 
 function toSurvey() {
  	location.replace("survey.html");
@@ -151,7 +150,7 @@ function checkControlQuestion(){
 }
 
 function generateUid(){
-	document.getElementById('uuidv4').textContent = Date.now() + '-' + Math.random();
+	document.getElementById('uuidv4').textContent = Date.now() + '-' + Math.round(Math.random()*100);
 }
 
 function add_comment(i){
