@@ -273,6 +273,16 @@ function loadRates(){
 	document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
 	
 	document.getElementById("score").textContent = sessionStorage.getItem("score");
+	
+	$.ajax ({
+		type: "GET",
+		dataType : 'json',
+		async: false,
+		url: 'save_json.php',
+		data: { data: sessionStorage.getItem("rates") },
+		success: function () {alert("Thanks!"); },
+		failure: function() {alert("Error!");}
+	    });
 }
 
 
