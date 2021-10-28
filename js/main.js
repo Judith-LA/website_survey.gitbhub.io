@@ -59,7 +59,7 @@ function displayControlQuestion(){
 	document.getElementById("Instructions").hidden = true;
 	document.getElementById("survey").hidden = false;
 
-	var parameters = location.search.substring(1).split("&");
+	/*var parameters = location.search.substring(1).split("&");
 	
 	if (parameters != ""){
 		var prod_def = parameters[0].split("=");
@@ -72,7 +72,9 @@ function displayControlQuestion(){
 		}
 	} else {
 		var data_file = "survey_test_control_question.json";
-	}
+	}*/
+	
+	var data_file = "surveys/survey_1.json"
 
 	$.getJSON(data_file).done(function(data) {  
 		file = data;
@@ -137,7 +139,7 @@ function checkControlQuestion(){
 	}	
 }
 
-function submitFailSurvey(){
+/*function submitFailSurvey(){
 		
 	//var submitUrl = config.hitCreation.production ? MTURK_SUBMIT : SANDBOX_SUBMIT;
 	if (prod == "true"){
@@ -170,7 +172,7 @@ function submitFailSurvey(){
 	$("#submit-form").attr("action", submitUrl); 
 	$("#submit-form").attr("method", "POST"); 
 	$("#submit-form").submit();
-}
+}*/
 
 
 function add_comment(i){
@@ -221,7 +223,7 @@ function displayInfo(){
 	//bar.style.width = (i+1)/34*100 +'%';
 	bar.style.width = (i+2)/34*100 +'%';
 	
-	//startDate = new Date();
+	startDate = new Date();
 }
 
 function nextQuestion(){
@@ -285,7 +287,8 @@ function endSurvey(){
 	
 	document.getElementById("survey").hidden = true;
 	loadRates();
-	document.getElementById("endSurvey").hidden = false;
+	//document.getElementById("endSurvey").hidden = false;
+	document.getElementById("results").hidden = false;
 }
 
 function addHiddenField(form, name, value) {
@@ -297,7 +300,7 @@ function addHiddenField(form, name, value) {
 }
 
 function loadRates(){
-	//document.getElementById("rates").textContent = sessionStorage.getItem("rates");
+	document.getElementById("rates").textContent = sessionStorage.getItem("rates");
 	
 	var surveyTime = sessionStorage.getItem("surveyTime");
 	var hours = Math.floor((surveyTime)/3600);
@@ -307,7 +310,7 @@ function loadRates(){
 	/*document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
 	document.getElementById("score").textContent = sessionStorage.getItem("score");*/
 	
-	var form = document.getElementById("submit-form");
+	/*var form = document.getElementById("submit-form");
 	addHiddenField(form, 'assignmentId', answers.assignmentId);
     	addHiddenField(form, 'workerId', answers.workerId);
 	var results = {
@@ -317,7 +320,10 @@ function loadRates(){
    	};
    	addHiddenField(form, 'rates', JSON.stringify(results));
 	var time = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
-	addHiddenField(form, 'survey_time', time);
+	addHiddenField(form, 'survey_time', time);*/
+	
+	document.getElementById("survey_time").textContent = hours.toString()+':'+minutes.toString()+':'+seconds.toString();
+	
 	//addHiddenField(form, 'captchaScore', sessionStorage.getItem("score"));
 }
 
