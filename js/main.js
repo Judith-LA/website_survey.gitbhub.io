@@ -42,17 +42,17 @@ function add_controlQuestion(){
 	var comment_title = document.getElementById("title");
 	var comment_text = document.getElementById("text");
 
-	comment_id.value = controlQuest.id[0];
-	comment_type.value = controlQuest.type[0];
+	comment_id.value = controlQuest[0].id;
+	comment_type.value = controlQuest[0].type;
 
-	var title = controlQuest.title[0];
+	var title = controlQuest[0].title;
 	if (title==null){
 		comment_title.textContent = '';
 	} else {
 		comment_title.textContent = title;
 	}
 
-	comment_text.textContent = controlQuest.text[0];
+	comment_text.textContent = controlQuest[0].text;
 }
 
 function displayControlQuestion(){
