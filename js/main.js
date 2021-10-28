@@ -84,7 +84,7 @@ function displayControlQuestion(){
 	});
 	
 	var bar = document.getElementById("progress-bar");
-	bar.style.width = (i+1)/34*100 +'%';
+	bar.style.width = (i+1)/31*100 +'%';
 	
 	startDate = new Date();
 }
@@ -221,9 +221,9 @@ function displayInfo(){
 	
 	var bar = document.getElementById("progress-bar");
 	//bar.style.width = (i+1)/34*100 +'%';
-	bar.style.width = (i+2)/34*100 +'%';
+	bar.style.width = (i+2)/31*100 +'%';
 	
-	startDate = new Date();
+	//startDate = new Date();
 }
 
 function nextQuestion(){
@@ -240,8 +240,8 @@ function nextQuestion(){
 			answers.rate.push(document.querySelector('input[name="Options"]:checked').value);
 			document.querySelector('input[name="Options"]:checked').checked = false;
 		}
-		/* test: i_max=2; reality: i_max=28 */
-		if (i >= 30){
+		
+		if (i >= 27){
 			document.getElementById('next').classList.remove('button');
 			document.getElementById('next').hidden = true;
 			document.getElementById('finish').classList.add('button');
@@ -251,7 +251,7 @@ function nextQuestion(){
 		i = i+1;
 		add_comment(i);
 		var bar = document.getElementById("progress-bar");
-		bar.style.width = (i+2)/34*100 +'%';
+		bar.style.width = (i+2)/31*100 +'%';
 	}
 }
 
