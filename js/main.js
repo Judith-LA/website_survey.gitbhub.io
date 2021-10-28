@@ -11,10 +11,10 @@ var index;
 var i=0;
 var answers = {id: [],
 	       type: [], 
-	       rate: [],
+	       rate: []}
 	       /*assignmentId: gup("assignmentId"),
-	       workerId: gup("workerId")};*/
-	       assignmentId: gup("assignmentId")};
+	       workerId: gup("workerId")};
+	       assignmentId: gup("assignmentId")};*/
 var startDate;
 var endDate;
 var prod;
