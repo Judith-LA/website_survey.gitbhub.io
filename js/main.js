@@ -288,7 +288,7 @@ function endSurvey(){
 	document.getElementById("survey").hidden = true;
 	loadRates();
 	//document.getElementById("endSurvey").hidden = false;
-	document.getElementById("results").hidden = false;
+	document.getElementById("showResults").hidden = false;
 }
 
 function addHiddenField(form, name, value) {
