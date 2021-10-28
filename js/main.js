@@ -104,7 +104,7 @@ function checkControlQuestion(){
 		document.getElementById("survey").hidden = true;
 		document.getElementById("fail").hidden = false;
 	} else if (document.querySelector('input[name="Options"]:checked') != null) {
-		var correctAnswer = controlQuest.answer[0];
+		var correctAnswer = controlQuest[0].answer;
 		
 		answers.id.push(document.getElementById('postid').value);
 		answers.type.push(document.getElementById('type').value);
