@@ -74,7 +74,7 @@ function displayControlQuestion(){
 		var data_file = "survey_test_control_question.json";
 	}*/
 	
-	var data_file = "surveys/survey_2.json"
+	var data_file = "surveys/survey_3.json"
 
 	$.getJSON(data_file).done(function(data) {  
 		file = data;
